@@ -28,6 +28,8 @@ The answer is [here](https://horlogeskynet.github.io/archey4).
 | Graphical    |  `pciutils`<br>`wmctrl`  | **GPU** wouldn't be detected without it<br>**WindowManager** would be more accurate | `pciutils` will provide `lspci` |
 | Virtual      | `virt-what`<br>`dmidecode` | **Model** would contain details about the hypervisor | `archey` will need to be run as **root** |
 
+**Without `dnsutils` (or `bind-tools` on Arch Linux), you'll need `wget` in order to retrieve your public IP address.**
+
 ## Installation
 
 ### Install from package
@@ -126,6 +128,9 @@ Below, some further explanations of each option available :
 		"char_before_unit": " ",
 		// Display temperature values in Fahrenheit instead of Celsius.
 		"use_fahrenheit": false
+	},
+	"timeout": {
+		// Some values you can adjust if the default ones look undersized for your system (seconds)
 	}
 }
 ```
