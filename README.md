@@ -1,5 +1,13 @@
 # Archey 4
 
+[![Build Status](https://travis-ci.org/HorlogeSkynet/archey4.svg?branch=master)](https://travis-ci.org/HorlogeSkynet/archey4)
+[![GitHub release](https://img.shields.io/github/release/HorlogeSkynet/archey4.svg)](https://github.com/HorlogeSkynet/archey4/releases/latest)
+[![PyPI release](https://img.shields.io/pypi/v/archey4.svg)](https://pypi.org/project/archey4/)
+[![AUR release](https://img.shields.io/aur/version/archey4.svg)](https://aur.archlinux.org/packages/archey4/)
+[![GitHub issues](https://img.shields.io/github/issues/HorlogeSkynet/archey4.svg)](https://github.com/HorlogeSkynet/archey4/issues)
+[![AUR votes](https://img.shields.io/aur/votes/archey4.svg)](https://aur.archlinux.org/packages/archey4/)
+[![License](https://img.shields.io/aur/license/archey4.svg)](https://aur.archlinux.org/packages/archey4/)
+
 > Archey is a simple system information tool written in Python
 
 ![archey4](https://horlogeskynet.github.io/img/blog/the-archey-project-what-i-ve-decided-to-do.png?v4.3.1)
@@ -49,40 +57,63 @@ Now, it's time to use your favorite package manager. Some examples :
 	apt install ./archey4-4.Y.Z-R-all.deb
 	```
 
-* Red Hat, Fedora, OpenSuse, ... ([source](https://labs.pixelswap.fr/HorlogeSkynet/archey4-packaging))
+* RPM-based distributions, and others...
 
-	```shell
-	dnf install ./archey4-4.Y.Z-R.noarch.rpm
-	```
+	**Packagers are welcome !**
+
+### Install with PIP
+
+```shell
+$ sudo pip3 install archey4
+```
 
 ### Install from source
 
-#### Latest stable release
-
-First, grab the archive containing the source code for the latest release [here](https://github.com/HorlogeSkynet/archey4/releases/latest), and then :
-
 ```shell
-$ tar xvzf archey4-4.X.Y.tar.gz
-$ cd archey4-4.X.Y/
-$ chmod +x archey
-$ sudo cp archey /usr/local/bin/archey
-```
+### Step 1 : Fetch the source ###
+# If you want the latest release
+$ wget https://github.com/HorlogeSkynet/archey4/archive/v4.4.0.tar.gz
+$ tar xvzf v4.4.0.tar.gz
+$ cd archey4-4.4.0/
+# ______________________________
 
-#### Development version
-
-```shell
+# If you want the latest changes
 $ git clone https://github.com/HorlogeSkynet/archey4.git
 $ cd archey4/
-$ chmod +x archey
-# Fetch latest changes (update your local version)
-$ git pull
-$ sudo cp archey /usr/local/bin/archey
+# ______________________________
+
+### Step 2 : Installation ###
+# If you have PIP installed on your system
+$ sudo pip3 install .
+# So if one day you wanna uninstall Archey
+$ sudo pip3 uninstall archey4
+# ________________________________________
+
+# But if you don't have PIP, no worries
+$ sudo cp archey/archey.py /usr/local/bin/archey
+$ sudo chmod +x /usr/local/bin/archey
+# _____________________________________
+
+### Step 3 (Optional) : Configuration files
+# System-wide configuration
+$ sudo mkdir /etc/archey4
+$ sudo cp archey/config.json /etc/archey4/config.json
+# User-specific configuration
+$ mkdir ~/.config/archey4
+$ cp archey/config.json ~/.config/archey4/config.json
+# ________________________________________
 ```
 
 ## Usage
 
 ```shell
 $ archey
+```
+
+or if you only want to try this out :
+
+```shell
+$ python3 archey/archey.py
 ```
 
 ## Configuration (optional)
@@ -104,6 +135,9 @@ Below, some further explanations of each option available :
 	// If set to `false`, configurations defined afterwards won't be loaded.
 	// Developers running Archey from the original project may keep in there the original `config.json` while having their own external configuration set elsewhere.
 	"allow_overriding": true,
+	// If set to `true`, any execution warning or error would be hidden.
+	// It may not apply to configuration parsing warnings.
+	"suppress_warnings": false,
 	"entries": {
 		// Set to `false` each entry you want to mask.
 	},
@@ -134,6 +168,18 @@ Below, some further explanations of each option available :
 	}
 }
 ```
+
+## Test cases
+
+Tests are now available. Here is a short procedure to run them (you'll only need `python3`) :
+
+```shell
+$ git clone https://github.com/HorlogeSkynet/archey4.git
+$ cd archey4/
+$ python3 setup.py test
+```
+
+Any improvement would be appreciated.
 
 ## Notes to users
 
